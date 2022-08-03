@@ -10,7 +10,7 @@ const Header = () => {
           <img src={Logo} alt="Logo" />
         </div>
       </div>
-      <div className="flex md:hidden w-full h-full">Mobile</div>
+      <div className="flex md:hidden w-full h-full"></div>
     </div>
   );
 };
