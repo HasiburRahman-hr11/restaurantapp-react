@@ -21,7 +21,6 @@ const Header = () => {
   const login = async () => {
     if (!state.user) {
       const response = await signInWithPopup(auth, provider);
-      console.log(response);
       dispatch({
         type: actionType.SET_USER,
         payload: response.user.providerData[0],
@@ -41,6 +40,13 @@ const Header = () => {
       type: actionType.LOGOUT_USER,
     });
     localStorage.removeItem("user");
+  };
+
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      payload: !state.cartShow,
+    });
   };
 
   const hideMenu = () => {
@@ -77,7 +83,7 @@ const Header = () => {
             </li>
           </motion.ul>
 
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center" onClick={showCart}>
             <MdShoppingBasket className="text-textColor text-2xl cursor-pointer" />
             <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-cartNumBg rounded-full">
               <p className="text-xs text-white font-semibold">4</p>

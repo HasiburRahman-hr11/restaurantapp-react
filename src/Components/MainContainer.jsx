@@ -48,7 +48,7 @@ const MainContainer = () => {
 
       <MenuContainer />
 
-      <CartContainer />
+      {state.cartShow && <CartContainer />}
     </div>
   );
 };
