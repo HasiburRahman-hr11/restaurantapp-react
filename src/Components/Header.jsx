@@ -17,6 +17,7 @@ const auth = getAuth(app);
 const Header = () => {
   const [state, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
+  console.log(state)
 
   const login = async () => {
     if (!state.user) {
@@ -83,11 +84,18 @@ const Header = () => {
             </li>
           </motion.ul>
 
-          <div className="relative flex items-center justify-center" onClick={showCart}>
+          <div
+            className="relative flex items-center justify-center"
+            onClick={showCart}
+          >
             <MdShoppingBasket className="text-textColor text-2xl cursor-pointer" />
-            <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-cartNumBg rounded-full">
-              <p className="text-xs text-white font-semibold">4</p>
-            </div>
+            {state.cartItems && state.cartItems.length > 0 && (
+              <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-cartNumBg rounded-full">
+                <p className="text-xs text-white font-semibold">
+                  {state.cartItems.length}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="relative">
@@ -192,9 +200,11 @@ const Header = () => {
 
         <div className="relative flex items-center justify-center">
           <MdShoppingBasket className="text-textColor text-2xl cursor-pointer" />
-          <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-cartNumBg rounded-full">
-            <p className="text-xs text-white font-semibold">4</p>
-          </div>
+          {state.cartItems && state.cartItems.length > 0 && (
+            <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-cartNumBg rounded-full">
+              <p className="text-xs text-white font-semibold">4</p>
+            </div>
+          )}
         </div>
       </div>
     </header>
